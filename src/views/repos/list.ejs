@@ -30,25 +30,13 @@
             </td>
             <% } %>
               <td class="w3-right-align">
-                <a onclick="viewTags('<%= item.name %>');" class="w3-text-green w3-margin-right w3-btn"><i class="fa fa-eye"></i></a>
-                <a onclick="deleteRepo('<%= item.name %>')" class="w3-text-red w3-btn"><i class="fa fa-trash"></i></a>
+                <a href="/repos/<%= encodeURIComponent(item.name) %>/tags" class="w3-text-green w3-margin-right w3-btn"><i class="fa fa-eye"></i></a>
+                <a class="w3-text-red w3-btn remove-repo-btn" data-repo="<%= encodeURIComponent(item.name) %>"><i class="fa fa-trash" data-repo="<%= encodeURIComponent(item.name) %>"></i></a>
               </td>
         </tr>
         <% }) %>
     </table>
     <a class="w3-btn w3-blue w3-margin-top" href="/registries">Back</a>
   </div>
-
-  <script>
-    function viewTags(repo) {
-      location.href = `repos/${encodeURIComponent(repo)}/tags`;
-    }
-
-    function deleteRepo(repo) {
-      if (confirm(`Delete all tags from ${repo} ?`)) {
-        location.replace(`/repos/remove/${encodeURIComponent(repo)}`);
-      }
-    }
-  </script>
 
   <%- include('../foot') -%>

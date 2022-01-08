@@ -20,7 +20,7 @@
             <%= item.baseURL %>
           </td>
           <td class="w3-right">
-            <a onclick="viewRegistry('<%= item._id %>');" class="w3-text-green w3-margin-right w3-btn"><i class="fa fa-eye"></i></a>
+            <a href="/registries/view/<%= item._id %>" class="w3-text-green w3-margin-right w3-btn"><i class="fa fa-eye"></i></a>
             <a href="/registries/edit/<%= item._id %>" class="w3-text-blue w3-margin-right w3-btn"><i class="fa fa-pencil"></i></a>
             <a href="/registries/remove/<%= item._id %>" class="w3-text-red w3-btn"><i class="fa fa-trash"></i></a>
           </td>
@@ -28,11 +28,5 @@
         <% }) %>
     </table>
   </div>
-
-  <script>
-    function viewRegistry(repo) {
-      location.href = `registries/view/${repo}`;
-    }
-  </script>
 
   <%- include('../foot') -%>

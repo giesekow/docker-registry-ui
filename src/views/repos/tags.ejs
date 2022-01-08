@@ -30,20 +30,12 @@
             <%= item.sha %>
           </td>
           <td class="w3-right-align">
-            <a onclick="deleteRepoTag('<%= repository %>','<%= item.name %>')" class="w3-text-red w3-btn"><i class="fa fa-trash"></i></a>
+            <a data-repo="<%= repository %>" data-repo-tag="<%= item.name %>" class="w3-text-red w3-btn remove-tag-repo-btn"><i class="fa fa-trash" data-repo="<%= repository %>" data-repo-tag="<%= item.name %>"></i></a>
           </td>
         </tr>
         <% }) %>
     </table>
     <a class="w3-btn w3-blue w3-margin-top" href="/repos">Back</a>
   </div>
-
-  <script>
-    function deleteRepoTag(repo, tag) {
-      if (confirm(`Delete ${tag} from ${repo} ?`)) {
-        location.replace(`/repos/${encodeURIComponent(repo)}/tags/${encodeURIComponent(tag)}/remove`);
-      }
-    }
-  </script>
 
   <%- include('../foot') -%>
