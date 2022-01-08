@@ -11,6 +11,6 @@ COPY package*.json ./
 RUN yarn
 
 # Bundle app source
-COPY . .
+COPY ./src/. .
 
 CMD [ "bash", "entrypoint"]
