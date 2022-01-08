@@ -1,0 +1,54 @@
+<%- include('../head', { title: 'Repositories' }) -%>
+
+  <div class="w3-container">
+    <h3>List of Repositories -
+      <%= registry.name %>
+        <%= locals.repository ? `- ${locals.repository}`: '' %>
+    </h3>
+    <table class="w3-table-all">
+      <thead>
+        <tr class="w3-blue">
+          <th>SN</th>
+          <th>Repository Name</th>
+          <% if (!registry.showEmpty) {%>
+            <th class="w3-right-align"># of Tags</th>
+            <% } %>
+              <th class="w3-right-align">Actions</th>
+        </tr>
+      </thead>
+      <% (locals.items || []).forEach(function(item, index){ %>
+        <tr>
+          <td>
+            <%= index + 1 %>
+          </td>
+          <td>
+            <%= item.name %>
+          </td>
+          <% if (!registry.showEmpty) {%>
+            <td class="w3-right-align">
+              <%= item.tags %>
+            </td>
+            <% } %>
+              <td class="w3-right-align">
+                <a onclick="viewTags('<%= item.name %>');" class="w3-text-green w3-margin-right w3-btn"><i class="fa fa-eye"></i></a>
+                <a onclick="deleteRepo('<%= item.name %>')" class="w3-text-red w3-btn"><i class="fa fa-trash"></i></a>
+              </td>
+        </tr>
+        <% }) %>
+    </table>
+    <a class="w3-btn w3-blue w3-margin-top" href="/registries">Back</a>
+  </div>
+
+  <script>
+    function viewTags(repo) {
+      location.href = `repos/${encodeURIComponent(repo)}/tags`;
+    }
+
+    function deleteRepo(repo) {
+      if (confirm(`Delete all tags from ${repo} ?`)) {
+        location.replace(`/repos/remove/${encodeURIComponent(repo)}`);
+      }
+    }
+  </script>
+
+  <%- include('../foot') -%>

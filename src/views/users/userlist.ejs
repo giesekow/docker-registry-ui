@@ -1,0 +1,27 @@
+<%- include('../head', { title: 'Dashboard' }) -%>
+
+  <div class="w3-container">
+    <h3>List of users</h3>
+    <a class="w3-btn w3-blue w3-margin-bottom" href="/users/create">Add User</a>
+    <table class="w3-table-all">
+      <thead>
+        <tr class="w3-blue">
+          <th>User Name</th>
+          <th class="w3-right">Actions</th>
+        </tr>
+      </thead>
+      <% (locals.users || []).forEach(function(user){ %>
+        <tr>
+          <td>
+            <%= user.username %>
+          </td>
+          <td class="w3-right">
+            <a href="/users/edit/<%= user._id %>" class="w3-text-green w3-margin-right"><i class="fa fa-pencil"></i></a>
+            <a href="/users/remove/<%= user._id %>" class="w3-text-red"><i class="fa fa-trash"></i></a>
+          </td>
+        </tr>
+        <% }) %>
+    </table>
+  </div>
+
+  <%- include('../foot') -%>

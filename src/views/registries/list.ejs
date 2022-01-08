@@ -1,0 +1,38 @@
+<%- include('../head', { title: 'Registries' }) -%>
+
+  <div class="w3-container">
+    <h3>List of registries</h3>
+    <a class="w3-btn w3-blue w3-margin-bottom" href="/registries/create">Add Registry</a>
+    <table class="w3-table-all">
+      <thead>
+        <tr class="w3-blue">
+          <th>Registry Name</th>
+          <th>Base URL</th>
+          <th class="w3-right">Actions</th>
+        </tr>
+      </thead>
+      <% (locals.items || []).forEach(function(item){ %>
+        <tr onclick="viewRegistry('<%= item._id %>');">
+          <td>
+            <%= item.name %>
+          </td>
+          <td>
+            <%= item.baseURL %>
+          </td>
+          <td class="w3-right">
+            <a onclick="viewRegistry('<%= item._id %>');" class="w3-text-green w3-margin-right w3-btn"><i class="fa fa-eye"></i></a>
+            <a href="/registries/edit/<%= item._id %>" class="w3-text-blue w3-margin-right w3-btn"><i class="fa fa-pencil"></i></a>
+            <a href="/registries/remove/<%= item._id %>" class="w3-text-red w3-btn"><i class="fa fa-trash"></i></a>
+          </td>
+        </tr>
+        <% }) %>
+    </table>
+  </div>
+
+  <script>
+    function viewRegistry(repo) {
+      location.href = `registries/view/${repo}`;
+    }
+  </script>
+
+  <%- include('../foot') -%>

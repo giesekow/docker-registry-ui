@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel='stylesheet' href='/stylesheets/w3.css' />
+  <link rel='stylesheet' href='/stylesheets/font-awesome.min.css' />
+  <title>
+    <%= locals.title || 'Home' %>
+  </title>
+</head>
+
+<body>
+  <% if (!locals.hideMenu) {%>
+    <div class="w3-bar w3-light-grey w3-border">
+      <a href="/registries" class="w3-bar-item w3-button w3-blue"><i class="fa fa-home"></i></a>
+      <a href="/logout" class="w3-bar-item w3-button w3-right"><i class="fa fa-sign-out"></i></a>
+      <a href="/users/profile" class="w3-bar-item w3-button w3-right"><i class="fa fa-user-circle"></i></a>
+      <% if (locals.currentUser && locals.currentUser.isAdmin) {%>
+        <a href="/users" class="w3-bar-item w3-button w3-right"><i class="fa fa-users"></i></a>
+        <a href="#" class="w3-bar-item w3-button w3-right"><i class="fa fa-cog"></i></a>
+        <% } %>
+    </div>
+    <% }%>
