@@ -13,4 +13,4 @@ RUN yarn
 # Bundle app source
 COPY ./src/. .
 
-CMD [ "bash", "entrypoint.sh"]
+CMD [ "sh", "entrypoint.sh"]
